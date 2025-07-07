@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovegram - Publisher Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .presentation-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .slide {
+            background: rgba(30, 30, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.8s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .slide:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .slide:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.8));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .title-slide h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        h2 {
+            color: #f8fafc;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: #e2e8f0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 30px 0 20px 0;
+        }
+
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .revenue-card {
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(45, 45, 66, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .revenue-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #d946ef);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .revenue-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.15);
+        }
+
+        .revenue-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .revenue-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #f8fafc;
+            font-weight: 500;
+        }
+
+        .revenue-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #8b5cf6;
+        }
+
+        .revenue-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 35px;
+            margin: 35px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #8b5cf6, #a855f7);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #f8fafc;
+        }
+
+        .choice-example {
+            background: rgba(15, 15, 35, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 12px;
+        }
+
+        .premium-choice {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #f8fafc;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .free-choice {
+            background: rgba(30, 30, 46, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(45, 45, 66, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: #f8fafc;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(30, 30, 46, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .column {
+            background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(45, 45, 66, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .column:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .column h3 {
+            margin-top: 0;
+            color: #f8fafc;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 18px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: #8b5cf6;
+            border-radius: 50%;
+        }
+
+        p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin: 18px 0;
+        }
+
+        strong {
+            color: #f8fafc;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(31, 41, 55, 0.9));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            text-align: center;
+            padding: 60px 50px;
+            border-radius: 16px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-section h2 {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2::after {
+            display: none;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border: none;
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .title-slide h1 {
+                font-size: 3rem;
+            }
+
+            .slide {
+                padding: 35px 25px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 20px;
+            }
+
+            .revenue-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation-container">
+        <!-- Title Slide -->
+        <div class="slide title-slide">
+            <h1>Lovegram</h1>
+            <p class="subtitle">Premium Romantic Visual Novels for Mobile</p>
+        </div>
+
+        <!-- Market Opportunity -->
+        <div class="slide">
+            <h2>Market Opportunity</h2>
+            <div class="highlight-box">
+                <h3>Romantic visual novels are top performing apps on mobile marketplaces in terms of generated revenue
+                </h3>
+            </div>
+
+            <h3>Monthly Revenue of Leading Products</h3>
+            <div class="revenue-grid">
+                <div class="revenue-card">
+                    <h4>Chapters</h4>
+                    <div class="revenue-amount">$1.9M</div>
+                    <p>$1M App Store + $900K Google Play</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>MeChat</h4>
+                    <div class="revenue-amount">$900K</div>
+                    <p>$500K App Store + $400K Google Play</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>Choices</h4>
+                    <div class="revenue-amount">$600K</div>
+                    <p>$400K App Store + $200K Google Play</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>Romance Club</h4>
+                    <div class="revenue-amount">$400K</div>
+                    <p>$200K App Store + $200K Google Play</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Analysis -->
+        <div class="slide">
+            <h2>Current Products Issues</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Poor UI Design</h4>
+                    <p>Products like Chapters rely on outdated UI patterns, resulting in visual overload that fragments user attention and disrupts focus</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Amateur Stories</h4>
+                    <p>Most of the stories are amateur-written — they lack narrative depth, emotional tension, and basic story structure</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Poor Soundtrack</h4>
+                    <p>Sound design plays significant role in user immersion into the game atmosphere</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Model -->
+        <div class="slide">
+            <h2>Why They Still Succeed?</h2>
+            <div class="highlight-box">
+                <h3>Premium Choices Strategy</h3>
+                <p>Instead of making paid content, they make premium choices. Users always have free options, but they're
+                    inferior to paid ones.</p>
+            </div>
+
+            <h3>Example</h3>
+            <div class="choice-example">
+                <div class="premium-choice">
+                    [Premium] Kiss him <i>(Triggers a satisfying romantic scene)</i>
+                </div>
+                <div class="free-choice">
+                    [Free] Step back nervously <i>(Scene ends awkwardly with no romance progression)</i>
+                </div>
+            </div>
+
+            <p><strong>Result:</strong> Players become emotionally invested and want happy endings, creating
+                psychological pressure that dramatically increases IAP conversion rates.</p>
+        </div>
+
+        <!-- Our Solution -->
+        <div class="slide">
+            <h2>Our Solution</h2>
+            <div class="highlight-box">
+                <h3>Better UI + Soundtrack + Deep Cinematic Stories</h3>
+                <p>We'll leverage our writing skills to create premium romantic experiences that outclass the
+                    competition.</p>
+            </div>
+
+            <h3>MVP Features</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Explore Page</h4>
+                    <p>Reels-like format for content discovery, mixed with offers and ads for optimal conversion</p>
+                </div>
+                <div class="feature-card">
+                    <h4>User Stories</h4>
+                    <p>Personal library of started stories with progress tracking</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Settings</h4>
+                    <p>Customizable experience with sound, language, and preference options</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monetization -->
+        <div class="slide">
+            <h2>Monetization Strategy</h2>
+            <div class="highlight-box">
+                <h3>Free-to-Play with Premium Choices</h3>
+            </div>
+
+            <h3>Revenue Streams</h3>
+            <ul>
+                <li><strong>Ad Revenue:</strong> Interstitial ads between chapters</li>
+                <li><strong>Premium Choices:</strong> Individual purchases for better story outcomes</li>
+                <li><strong>Subscription Model:</strong> Ad-free experience + 50% discount on premium choices</li>
+            </ul>
+        </div>
+
+        <!-- Competitive Advantage -->
+        <div class="slide">
+            <h2>Why Choose Lovegram?</h2>
+            <div class="highlight-box">
+                <h3>We're Not Competing — We're Expanding the Experience</h3>
+                <p>Users who enjoy romantic games always want more content. Our goal isn't to replace existing products, but to serve the same audience with deeper stories, richer experiences, and professional storytelling.</p>
+            </div>
+
+            <h3>Our Competitive Edge</h3>
+            <ul>
+                <li><strong>Professional Writing:</strong> Deep, cinematic narratives</li>
+                <li><strong>Premium Design:</strong> Modern, polished UI/UX</li>
+                <li><strong>Quality Control:</strong> Curated content, no user-generated dilution</li>
+                <li><strong>Emotional Investment:</strong> Stories users will fall in love with</li>
+                <li><strong>Regular Updates:</strong> Fresh content to maintain engagement</li>
+            </ul>
+        </div>
+
+        <!-- Development Timeline -->
+        <div class="slide">
+            <h2>MVP Delivery</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">1-2</span>
+                    <span class="stat-label">Months to MVP</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4-6</span>
+                    <span class="stat-label">Launch Stories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Hours of Gameplay</span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Launch Strategy</h3>
+                <p>Include previews of upcoming stories to incentivize subscriptions and demonstrate our commitment to
+                    regular content updates.</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="slide cta-section">
+            <h2>Partner with Lovegram</h2>
+            <p>Join us in revolutionizing the romantic visual novel market with premium quality content and proven
+                monetization strategies.</p>
+            <button class="cta-button">Let's Create Love Stories Together</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+
+            document.querySelector('.cta-button').addEventListener('click', function () {
+                this.style.transform = 'scale(0.98) translateY(0)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-2px)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>
